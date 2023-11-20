@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% endblock %}
+    {% block title %}
+      <title>Glossary</title>
+    {% endblock %}
+  </head>
+  <body>
+    <nav class"side-bar">
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="#">Reference</a>
+        </li>
+        {% if user.is_superuser %}
+        <li>
+          <a href="{% url 'admin:index' %}">Admin</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <header>
+      <h1>{% block header %}{% endblock %}</h1>
+    </header>
+    {% block topbar %}
+     <!-- default navbar-->
+    {% endblock %}
+    {% block content %}
+      <!-- default content text (typically empty) -->
+    {% endblock %}
+  </body>
+</html>

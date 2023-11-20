@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block topbar %}
+    <nav class="top-bar">
+      <ul>
+          {% for name in metrics %}
+            <li>
+                <a href="{{ name.get_absolute_url }}">{{ name }}</a>
+            </li>
+          {% endfor %}
+      </ul>
+  </nav>
+{% endblock %}
+{% block header %}{{ metric.name }}{% endblock header %}
+{% block content %}
+    <section class="definition">
+        {{ metric.definition }}
+    </section>
+    <section class="feature">
+        {% for feature in metric.feature.all %}
+            <p class="feature">
+                <h2>{{ feature.name }}</h2>
+            </p>
+        {% endfor %}
+    </section>
+{% endblock content %}
+
