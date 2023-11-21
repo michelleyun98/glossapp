@@ -5,9 +5,9 @@
     {% block stylesheet %}
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     {% endblock %}
-    {% block title %}
-      <title>Glossary</title>
-    {% endblock %}
+    <title>Glossary
+      {% block title %}{% endblock %}
+    </title>
   </head>
   <body>
     {% block topbar %}
@@ -29,7 +29,18 @@
         </nav>
     {% endblock topbar %}
     {% block sidebar %}
-    <!-- secondary navbar-->
+    <nav aria-labelledby="secondary-navigation">
+      <ul id="secondary-navigation">
+          <li>
+              <a href="{{ intro.get_absolute_url }}">Intro</a>
+          </li>
+          {% for name in metrics %}
+          <li>
+              <a href="{{ name.get_absolute_url }}">{{ name }}</a>
+          </li>
+          {% endfor %}
+      </ul>
+  </nav>
     {% endblock sidebar %}
     
     {% block content %}

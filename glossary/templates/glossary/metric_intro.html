@@ -1,26 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidebar %}
-<nav aria-labelledby="secondary-navigation">
-    <ul id="secondary-navigation">
-        <li>
-            <a href="{{ intro.get_absolute_url }}">Intro</a>
-        </li>
-        {% for name in metrics %}
-        <li>
-            <a href="{{ name.get_absolute_url }}">{{ name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</nav>
-{% endblock %}
-
 {% block content %}
-
-<div class="wrap">
+<div id="wrap">
     <h1>Introduction</h1>
-    {{ intro.body|safe }}
+    {{ intro.body|safe|linebreaks }}
 </div>
-
 {% endblock content %}

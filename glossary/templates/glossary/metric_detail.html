@@ -1,34 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidebar %}
-<nav aria-labelledby="secondary-navigation">
-    <ul id="secondary-navigation">
-        <li>
-            <a href="{{ intro.get_absolute_url }}">Intro</a>
-        </li>
-        {% for name in metrics %}
-        <li>
-            <a href="{{ name.get_absolute_url }}">{{ name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</nav>
-{% endblock %}
 
+{% block title %}- {{ metric.name }}{% endblock title %}
 {% block content %}
 
-<div class="wrap">
+<div id="wrap">
+    <div class="container">
     <h1>{{ metric.name }}</h1>
     <p>{{ metric.definition|safe }}</p>
-
+    </div>
     {% for feature in metric.feature.all %}
+    <div class="container">
         <h2>{{ feature.name }}</h2>
         <p>{{ feature.definition|safe }}</p>
-        <div class="inside">
+        <div id="inside">
             <h3>Ask Yourself</h3>
             <p>{{ feature.transform|safe }}</p>
         </div>
+    </div>
     {% endfor %}
 </div>
 
