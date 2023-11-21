@@ -10,29 +10,31 @@
     {% endblock %}
   </head>
   <body>
-    <nav class"side-bar">
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="#">Reference</a>
-        </li>
-        {% if user.is_superuser %}
-        <li>
-          <a href="{% url 'admin:index' %}">Admin</a>
-        </li>
-        {% endif %}
-      </ul>
-    </nav>
-    <header>
-      <h1>{% block header %}{% endblock %}</h1>
-    </header>
     {% block topbar %}
-     <!-- default navbar-->
-    {% endblock %}
+        <!-- default navbar-->
+        <nav aria-labelledby="primary-navigation">
+            <ul id="primary-navigation">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="{{ intro.get_absolute_url }}">Reference</a>
+                </li>
+                {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endblock topbar %}
+    {% block sidebar %}
+    <!-- secondary navbar-->
+    {% endblock sidebar %}
+    
     {% block content %}
-      <!-- default content text (typically empty) -->
-    {% endblock %}
+    <!-- default content text (typically empty) -->
+    {% endblock content %}
   </body>
 </html>
+

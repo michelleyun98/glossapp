@@ -19,20 +19,8 @@
 {% block content %}
 
 <div class="wrap">
-    <h1>{{ metric.name }}</h1>
-    <p>{{ metric.definition|safe }}</p>
-
-    {% for feature in metric.feature.all %}
-        <h2>{{ feature.name }}</h2>
-        <p>{{ feature.definition|safe }}</p>
-        <div class="inside">
-            <h3>Ask Yourself</h3>
-            <p>{{ feature.transform|safe }}</p>
-        </div>
-    {% endfor %}
+    <h1>Introduction</h1>
+    {{ intro.body|safe }}
 </div>
 
 {% endblock content %}
-
-
-
