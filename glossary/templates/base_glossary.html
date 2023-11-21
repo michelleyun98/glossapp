@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% endblock %}
+    <title>Glossary
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block topbar %}
+        <!-- default navbar-->
+        <nav aria-labelledby="primary-navigation">
+            <ul id="primary-navigation">
+                <li class="nav-link">
+                    <a href="/">HOME</a>
+                </li>
+                <li class="nav-link">
+                    <a href="{{ intro.get_absolute_url }}">REFERENCE</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-link">
+                  <a href={% url 'logout'%}>Logout</a>
+              </li>
+                {% else %}
+                <li class="nav-link">
+                  <a href={% url 'login'%}>Login</a>
+              </li>
+              {% endif %}
+                {% if user.is_superuser %}
+                <li class="nav-link">
+                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endblock topbar %}
+    {% block sidebar %}
+      <nav aria-labelledby="secondary-navigation">
+        <ul id="secondary-navigation">
+            <li class="nav-link">
+                <a href="{{ intro.get_absolute_url }}">Intro</a>
+            </li>
+            {% for name in metrics %}
+            <li class="nav-link">
+                <a href="{{ name.get_absolute_url }}">{{ name }}</a>
+            </li>
+          
+            {% endfor %}
+        </ul>
+     </nav>
+    {% endblock sidebar %}
+    {% block content %}
+    <!-- default content text (typically empty) -->
+    {% endblock content %}
+  </body>
+</html>
+

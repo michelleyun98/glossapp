@@ -7,17 +7,30 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background-color: grey;
+    background-color: rgb(154, 155, 156);
 }
 
 #wrap {
     margin: 10%;
-    background-color: rgb(255, 213, 0);
+    background-color: rgb(212, 255, 0);
 
 }
 .container {
     background-color: lightskyblue;
-    
+    padding: 10px;
+    margin: 15px;
+}
+
+#inside {
+    background-color: indianred;
+    margin: 20px;
+    padding: 10px;
+}
+
+#inside h3 {
+
+    text-align: center;
+
 }
 ul {
     list-style-type: none;
@@ -27,17 +40,22 @@ ul {
 }
 #primary-navigation, #secondary-navigation {
     width: 100%;
-    background-color: rgb(239, 151, 205);
+    background-color: rgb(218, 121, 190);
     top: 0;
     padding: 10px;
     
 }
 #secondary-navigation {
    margin-top: 35px;
-   background-color: rgb(156, 245, 156)
+   background-color: rgb(63, 183, 63);
+   text-align: center;
 }
 #primary-navigation li, #secondary-navigation li{
-    display: inline;
+    display: inline-block;
 }
 
 
+.nav-link a {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}

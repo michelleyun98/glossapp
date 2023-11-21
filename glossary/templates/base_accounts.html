@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/style_accounts.css" %}">
+    {% endblock %}
+    <title>Accounts
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+
+
+  <body>
+    {% block sidebar %}
+      <!-- insert default navigation text for every page -->
+    {% endblock %}
+    {% block content %}
+      <!-- default content text (typically empty) -->
+    {% endblock %}
+  </body>
+</html>

@@ -35,13 +35,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'glossary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'glossary.apps.GlossaryConfig',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'glossary/media')
 MEDIA_URL = 'media/'
 
+LOGIN_REDIRECT_URL = '/'

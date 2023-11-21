@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from .models import Metric, Intro
+from .forms import RegisterForm
+from django.contrib import messages
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def index(request):
@@ -30,5 +34,19 @@ def metric_detail_view(request, primary_key):
         raise Http404(' does not exist')
 
     return render(request, 'glossary/metric_detail.html', context=context)
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            return redirect('login')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'registration/register.html', {"form" : form})
+        
+        
     
     

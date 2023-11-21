@@ -1,11 +1,13 @@
 from django.contrib import admin
-from django.apps import apps
 
 # Register your models here.
-models = apps.get_models()
+from django.apps import apps
+
+app_config = apps.get_app_config('glossary') # Replace your_app_name it is just a placeholder
+models = app_config.get_models()
+
 for model in models:
     try:
         admin.site.register(model)
-    except:
-        admin.site.unregister(model)
-        admin.site.register(model)
+    except admin.sites.AlreadyRegistered:
+        pass

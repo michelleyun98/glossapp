@@ -1,0 +1,32 @@
+{% extends "base_accounts.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+<p>
+	{{ form.errors }}
+</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+	<h2>Register</h2>
+	{% for field in form %}
+	<div class="field">
+		{% if field.name == "password2" %}
+		<p id="confirm-pwd">
+			Enter password confirmation
+		</p>
+		{% endif %}
+		<p class="name">
+			{{ field.name|capfirst|cut:"1"|cut:"2" }}
+		</p>
+		<p class="input">
+			{{ field }}
+		</p>
+	</div>
+
+{% endfor %}
+    <button type="submit">Register</button>
+  </form>
+{% endblock %}
