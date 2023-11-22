@@ -26,11 +26,8 @@ body {
     margin: 20px;
     padding: 10px;
 }
-
 #inside h3 {
-
     text-align: center;
-
 }
 ul {
     list-style-type: none;
@@ -56,6 +53,20 @@ ul {
 
 
 .nav-link a {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 255, 255);
     padding: 10px;
 }
+
+
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+
+
+.nav-link a:hover {
+    color: red;
+}
+
+
+/* ---------------------------------- */
+
