@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from .scripts import functions
+from scripts import functions
 
 class Metric(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
