@@ -15,9 +15,25 @@
     <div class="container">
         <h2>{{ feature.name }}</h2>
         <p>{{ feature.definition|safe }}</p>
-        <div id="inside">
+        <div class="inside">
             <h3>Ask Yourself</h3>
             <p>{{ feature.transform|safe }}</p>
+        </div>
+        <div class="inside">
+            <h3>Examples</h3>
+            {% for example in feature.conversation.all %}
+            <div class="example-container">
+                <h4>Example {{ forloop.counter }}</h4>
+                {% for turn in example.turn.all %}
+                <p>
+                    {{ turn.speaker_type|safe }}
+                </p>
+                <p>
+                    {{ turn.body|safe }}
+                </p>
+                {% endfor %}
+            </div>
+            {% endfor %}
         </div>
     </div>
     {% endfor %}
