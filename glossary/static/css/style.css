@@ -53,8 +53,9 @@ ul {
 
 
 .nav-link a {
-    color: rgb(0, 255, 255);
+    color: rgb(255, 255, 255);
     padding: 10px;
+    transition: .55s;
 }
 
 

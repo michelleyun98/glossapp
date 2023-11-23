@@ -10,7 +10,7 @@ body {
     font-family: sans-serif;
 }
 form {
-    background-color: lavender;
+    background-color: rgb(24, 24, 204);
     text-align: center;
     width: 500px;
     height: 400px;
@@ -20,6 +20,7 @@ form {
 input, button {
     margin-top: 10px;
     width: 100%;
+    padding: 10px;
 }
 
 .form-field {
