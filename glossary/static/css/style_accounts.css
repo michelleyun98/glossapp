@@ -10,15 +10,19 @@ body {
     font-family: sans-serif;
 }
 form {
-    background-color: rgb(24, 24, 204);
+    background-color: lavender;
     text-align: center;
     width: 500px;
     height: 400px;
     padding: 50px 80px;
 }
-
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 input, button {
     margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
     padding: 10px;
 }
