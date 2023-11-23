@@ -17,11 +17,17 @@
                 <li class="nav-link">
                     <a href="/">HOME</a>
                 </li>
+                {% if index %}
                 <li class="nav-link">
+                  <a href="{{ intro.get_absolute_url }}">REFERENCE</a>
+              </li>
+              {% else %}
+                <li class="nav-link" id="active">
                     <a href="{{ intro.get_absolute_url }}">REFERENCE</a>
                 </li>
+                {% endif %}
                 {% if user.is_authenticated %}
-                <li class="nav-link">
+                <li class="nav-link" id="menu-logout">
                   <a href={% url 'logout'%}>Logout</a>
               </li>
                 {% else %}
@@ -30,28 +36,44 @@
               </li>
               {% endif %}
                 {% if user.is_superuser %}
-                <li class="nav-link">
+                <li class="nav-link" id="menu-admin">
                     <a href="{% url 'admin:index' %}">ADMIN</a>
                 </li>
                 {% endif %}
             </ul>
         </nav>
     {% endblock topbar %}
+
+  
     {% block sidebar %}
-      <nav aria-labelledby="secondary-navigation">
-        <ul id="secondary-navigation">
-            <li class="nav-link">
-                <a href="{{ intro.get_absolute_url }}">Intro</a>
-            </li>
-            {% for name in metrics %}
-            <li class="nav-link">
-                <a href="{{ name.get_absolute_url }}">{{ name }}</a>
-            </li>
-          
-            {% endfor %}
-        </ul>
-     </nav>
-    {% endblock sidebar %}
+<nav aria-labelledby="secondary-navigation">
+  <ul id="secondary-navigation">
+    <li class="nav-link">
+        <a href="{{ intro.get_absolute_url }}">Intro</a>
+    </li>
+      {% for name in metrics %}
+      {% if name|safe  == metric.name|safe %}
+
+      <li class="nav-link" id="active">
+  
+        <a href="{{ name.get_absolute_url }}">{{ name }}</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-link">
+
+          <a href="{{ name.get_absolute_url }}">{{ name }}</a>
+        </li>
+
+      {% endif %}
+      
+      {% endfor %}
+  </ul>
+</nav>
+{% endblock sidebar %}
+
+
     {% block content %}
     <!-- default content text (typically empty) -->
     {% endblock content %}

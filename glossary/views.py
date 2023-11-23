@@ -11,6 +11,7 @@ def index(request):
     context = {
         "metrics" : Metric.objects.all(),
         "intro" : Intro.objects.latest("created_at"),
+        "index": "True"
     }
     return render(request, 'glossary/index.html', context=context)
 
