@@ -26,7 +26,7 @@
                 <h4>Example {{ forloop.counter }}</h4>
                 {% for turn in example.turn.all %}
                 <p>
-                    {{ turn.speaker_type|safe }}
+                    {{ turn.speaker_type|safe|capfirst }}
                 </p>
                 <p>
                     {{ turn.body|safe }}
