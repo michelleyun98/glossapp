@@ -5,8 +5,17 @@
 {% block title %}- {{ metric.name }}{% endblock title %}
 
 {% block content %}
-
 <div id="wrap">
+    <div class="container">
+        <h1>{{ metric.name }}</h1>
+       <p>{{ metric.definition|safe }}</p>
+    </div>
+    
+
+</div>
+</div>
+
+{% comment %} <div id="wrap">
     <div class="container">
     <h1>{{ metric.name }}</h1>
     <p>{{ metric.definition|safe }}</p>
@@ -37,7 +46,7 @@
         </div>
     </div>
     {% endfor %}
-</div>
+</div> {% endcomment %}
 
 {% endblock content %}
 

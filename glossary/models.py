@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from scripts import functions
-
+from scripts import module
+from django.core.validators import RegexValidator
 class Metric(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     name = models.CharField(max_length=50, unique=True)
@@ -9,7 +9,6 @@ class Metric(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        from django.urls import reverse
         return reverse("metric-detail", args=[str(self.id)])
     
     
@@ -19,7 +18,7 @@ class Feature(models.Model):
         LABEL = "label"
         RANK = "rank"
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=30, unique=True)
     dtype = models.TextField(choices=DType.choices, blank=True)
     metric = models.ManyToManyField(Metric, related_name="feature", help_text="Select a metric for this column")
     definition = models.TextField(null=True)
@@ -27,7 +26,12 @@ class Feature(models.Model):
     def __str__(self) -> str:
         return self.name
     def transform(self):
-        return functions.to_list(self.notes)
+        return module.to_list(self.notes)
+    def get_absolute_url(self):
+        
+        return reverse("feature-detail", args=[module.to_slug(self.name)])
+    
+    
     
 
 
@@ -37,7 +41,6 @@ class Intro(models.Model):
     def __str__(self) -> str:
         return f"Intro {str(self.id)}"
     def get_absolute_url(self):
-        from django.urls import reverse
         return reverse("metric-intro")
 
 
