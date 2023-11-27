@@ -10,6 +10,7 @@ class ContextDict:
     cd = {
         "metrics" : Metric.objects.all(),
         "intro" : Intro.objects.latest("created_at"),
+        "index":False
     }
    
     def __init__(self, **kwargs):
@@ -22,14 +23,14 @@ def index(request):
     return render(request, 'glossary/index.html', context=context.cd)
 
 def metric_intro_view(request):
-    context = ContextDict()
+    context = ContextDict(index=False)
     #context.update(index=False)
     return render(request, 'glossary/metric_intro.html', context=context.cd)
 
 def metric_detail_view(request, primary_key):
     try:
         metric = Metric.objects.get(pk=primary_key)
-        context = ContextDict(metric=metric)
+        context = ContextDict(index=False, metric=metric)
         #context.update(index=False, metric=Metric.objects.get(pk=primary_key))
     except Metric.DoesNotExist:
         raise Http404(' does not exist')

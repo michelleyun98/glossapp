@@ -46,6 +46,9 @@
                     <a href="{% url 'admin:index' %}">ADMIN</a>
                 </li>
                 {% endif %}
+                <li class="nav-search">
+                  <input type="text" placeholder="search..."></input>
+                </li>
             </ul>
         </nav>
     {% endblock topbar %}
@@ -87,3 +90,92 @@
   </body>
 </html>
 
+
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% endblock %}
+    <title>Glossary
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% block topbar %}
+        <!-- default navbar-->
+        <nav aria-labelledby="primary-navigation">
+            <ul id="primary-navigation">
+                {% if index %}
+                <li class="nav-link" id="active">
+                    <a href="/">HOME</a>
+                </li>
+                {% else %}
+                <li class="nav-link">
+                  <a href="/">HOME</a>
+                </li>
+                {% endif %}
+                {% if index %}
+                <li class="nav-link">
+                  <a href="{{ intro.get_absolute_url }}">REFERENCE</a>
+                </li>
+                {% else %}
+                  <li class="nav-link" id="active">
+                      <a href="{{ intro.get_absolute_url }}">REFERENCE</a>
+                  </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                  <li class="nav-link" id="menu-logout">
+                    <a href={% url 'logout'%}>Logout</a>
+                </li>
+                  {% else %}
+                <li class="nav-link">
+                  <a href={% url 'login'%}>Login</a>
+              </li>
+              {% endif %}
+                {% if user.is_superuser %}
+                <li class="nav-link" id="menu-admin">
+                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endblock topbar %}
+
+    {% block sidebar %}
+    <nav aria-labelledby="secondary-navigation">
+      <ul id="secondary-navigation">
+        {% if metric %}
+        <li class="nav-link">
+        {% else %}
+        <li class="nav-link" id="active">
+        {% endif %}
+        <a href="{{ intro.get_absolute_url }}">Intro</a>
+        </li>
+        {% for name in metrics %}
+          {% if name|safe  == metric.name|safe %}
+          <li class="nav-link" id="active">
+          {% else %}
+          <li class="nav-link">
+          {% endif %}
+          <a class="link" href="{{ name.get_absolute_url }}">{{ name }}</a>
+            <ul class="dropdown-list">
+              {% for feature in name.feature.all %}
+              <li class="dropdown-link">
+                <a href="{{ feature.get_absolute_url }}">{{ feature.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+    </ul>
+  </nav>
+  {% endblock sidebar %}
+
+
+    {% block content %}
+    <!-- default content text (typically empty) -->
+    {% endblock content %}
+  </body>
+</html> {% endcomment %}
