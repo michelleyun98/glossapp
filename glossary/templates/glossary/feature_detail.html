@@ -4,7 +4,7 @@
 {% block content %}
 
 <div id="wrap">
-    <ul>
+    <ul class="mini-nav">
         {% for feature in metric.feature.all %}
         <li>
             <a href="{{ feature.get_absolute_url }}">{{ feature }}</a>
