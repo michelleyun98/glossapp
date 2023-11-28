@@ -10,7 +10,9 @@
     </title>
   </head>
   <body>
+
     {% block topbar %}
+
         <!-- default navbar-->
         <nav aria-labelledby="primary-navigation">
             <ul id="primary-navigation">
@@ -33,7 +35,7 @@
                   </li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                  <li class="nav-link" id="menu-logout">
+                  <li class="nav-link">
                     <a href={% url 'logout'%}>Logout</a>
                 </li>
                   {% else %}
@@ -42,7 +44,7 @@
               </li>
               {% endif %}
                 {% if user.is_superuser %}
-                <li class="nav-link" id="menu-admin">
+                <li class="nav-link">
                     <a href="{% url 'admin:index' %}">ADMIN</a>
                 </li>
                 {% endif %}
@@ -81,6 +83,7 @@
         {% endfor %}
     </ul>
   </nav>
+
   {% endblock sidebar %}
 
 
